@@ -9,6 +9,8 @@ repository = "https://github.com/CosmWasm/wasmvm"
 license = "Apache-2.0"
 readme = "README.md"
 exclude = [".circleci/*", ".gitignore"]
+build = "build.rs"
+links = "tcmalloc"
 
 [lib]
 crate-type = ["cdylib"]
@@ -39,6 +41,9 @@ tempfile = "3.1.0"
 
 [build-dependencies]
 cbindgen = "0.18.0"
+
+[target.'cfg(not(target_env = "msvc"))'.dependencies]
+jemallocator = "0.3.2"
 
 [profile.release]
 opt-level = 3
