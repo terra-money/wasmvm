@@ -184,7 +184,7 @@ checksum = "9d6f2aa4d0537bcc1c74df8755072bd31c1ef1a3a1b85a68e8404a8c353b7b8b"
 [[package]]
 name = "cosmwasm-crypto"
 version = "1.0.0-beta4"
-source = "git+https://github.com/terra-money/cosmwasm.git?rev=0abb5ce3#0abb5ce3b08d0286a277157fea6fd11ab4571989"
+source = "git+https://github.com/terra-money/cosmwasm.git?rev=v1.0.0-beta4#0abb5ce3b08d0286a277157fea6fd11ab4571989"
 dependencies = [
  "digest",
  "ed25519-zebra",
@@ -196,7 +196,7 @@ dependencies = [
 [[package]]
 name = "cosmwasm-derive"
 version = "1.0.0-beta4"
-source = "git+https://github.com/terra-money/cosmwasm.git?rev=0abb5ce3#0abb5ce3b08d0286a277157fea6fd11ab4571989"
+source = "git+https://github.com/terra-money/cosmwasm.git?rev=v1.0.0-beta4#0abb5ce3b08d0286a277157fea6fd11ab4571989"
 dependencies = [
  "syn",
 ]
@@ -204,7 +204,7 @@ dependencies = [
 [[package]]
 name = "cosmwasm-std"
 version = "1.0.0-beta4"
-source = "git+https://github.com/terra-money/cosmwasm.git?rev=0abb5ce3#0abb5ce3b08d0286a277157fea6fd11ab4571989"
+source = "git+https://github.com/terra-money/cosmwasm.git?rev=v1.0.0-beta4#0abb5ce3b08d0286a277157fea6fd11ab4571989"
 dependencies = [
  "base64",
  "cosmwasm-crypto",
@@ -219,7 +219,7 @@ dependencies = [
 [[package]]
 name = "cosmwasm-vm"
 version = "1.0.0-beta4"
-source = "git+https://github.com/terra-money/cosmwasm.git?rev=0abb5ce3#0abb5ce3b08d0286a277157fea6fd11ab4571989"
+source = "git+https://github.com/terra-money/cosmwasm.git?rev=v1.0.0-beta4#0abb5ce3b08d0286a277157fea6fd11ab4571989"
 dependencies = [
  "clru",
  "cosmwasm-crypto",
