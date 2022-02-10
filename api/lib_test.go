@@ -19,17 +19,18 @@ const TESTING_PRINT_DEBUG = false
 const TESTING_GAS_LIMIT = 100_000_000
 const TESTING_MEMORY_LIMIT = 32 // MiB
 const TESTING_CACHE_SIZE = 100  // MiB
+const TESTING_REFRESH_THREAD_NUM = 4
 
 func TestInitAndReleaseCache(t *testing.T) {
 	dataDir := "/foo"
-	_, err := InitCache(dataDir, TESTING_FEATURES, TESTING_CACHE_SIZE, TESTING_MEMORY_LIMIT)
+	_, err := InitCache(dataDir, TESTING_FEATURES, TESTING_CACHE_SIZE, TESTING_MEMORY_LIMIT, TESTING_REFRESH_THREAD_NUM)
 	require.Error(t, err)
 
 	tmpdir, err := ioutil.TempDir("", "wasmvm-testing")
 	require.NoError(t, err)
 	defer os.RemoveAll(tmpdir)
 
-	cache, err := InitCache(tmpdir, TESTING_FEATURES, TESTING_CACHE_SIZE, TESTING_MEMORY_LIMIT)
+	cache, err := InitCache(tmpdir, TESTING_FEATURES, TESTING_CACHE_SIZE, TESTING_MEMORY_LIMIT, TESTING_REFRESH_THREAD_NUM)
 	require.NoError(t, err)
 	ReleaseCache(cache)
 }
@@ -38,14 +39,14 @@ func TestInitCacheEmptyFeatures(t *testing.T) {
 	tmpdir, err := ioutil.TempDir("", "wasmvm-testing")
 	require.NoError(t, err)
 	defer os.RemoveAll(tmpdir)
-	cache, err := InitCache(tmpdir, "", TESTING_CACHE_SIZE, TESTING_MEMORY_LIMIT)
+	cache, err := InitCache(tmpdir, "", TESTING_CACHE_SIZE, TESTING_MEMORY_LIMIT, TESTING_REFRESH_THREAD_NUM)
 	ReleaseCache(cache)
 }
 
 func withCache(t *testing.T) (Cache, func()) {
 	tmpdir, err := ioutil.TempDir("", "wasmvm-testing")
 	require.NoError(t, err)
-	cache, err := InitCache(tmpdir, TESTING_FEATURES, TESTING_CACHE_SIZE, TESTING_MEMORY_LIMIT)
+	cache, err := InitCache(tmpdir, TESTING_FEATURES, TESTING_CACHE_SIZE, TESTING_MEMORY_LIMIT, TESTING_REFRESH_THREAD_NUM)
 	require.NoError(t, err)
 
 	cleanup := func() {
@@ -208,7 +209,7 @@ func TestGetMetrics(t *testing.T) {
 	assert.Equal(t, &types.Metrics{
 		HitsFsCache:         1,
 		ElementsMemoryCache: 1,
-		SizeMemoryCache:     4977784,
+		SizeMemoryCache:     7937284,
 	}, metrics)
 
 	// Instantiate 2
@@ -223,7 +224,7 @@ func TestGetMetrics(t *testing.T) {
 		HitsMemoryCache:     1,
 		HitsFsCache:         1,
 		ElementsMemoryCache: 1,
-		SizeMemoryCache:     4977784,
+		SizeMemoryCache:     7937284,
 	}, metrics)
 
 	// Pin
@@ -238,8 +239,8 @@ func TestGetMetrics(t *testing.T) {
 		HitsFsCache:               1,
 		ElementsPinnedMemoryCache: 1,
 		ElementsMemoryCache:       1,
-		SizePinnedMemoryCache:     4977784,
-		SizeMemoryCache:           4977784,
+		SizePinnedMemoryCache:     7959108,
+		SizeMemoryCache:           7937284,
 	}, metrics)
 
 	// Instantiate 3
@@ -256,8 +257,8 @@ func TestGetMetrics(t *testing.T) {
 		HitsFsCache:               1,
 		ElementsPinnedMemoryCache: 1,
 		ElementsMemoryCache:       1,
-		SizePinnedMemoryCache:     4977784,
-		SizeMemoryCache:           4977784,
+		SizePinnedMemoryCache:     7959108,
+		SizeMemoryCache:           7937284,
 	}, metrics)
 
 	// Unpin
@@ -274,7 +275,7 @@ func TestGetMetrics(t *testing.T) {
 		ElementsPinnedMemoryCache: 0,
 		ElementsMemoryCache:       1,
 		SizePinnedMemoryCache:     0,
-		SizeMemoryCache:           4977784,
+		SizeMemoryCache:           7937284,
 	}, metrics)
 
 	// Instantiate 4
@@ -292,7 +293,7 @@ func TestGetMetrics(t *testing.T) {
 		ElementsPinnedMemoryCache: 0,
 		ElementsMemoryCache:       1,
 		SizePinnedMemoryCache:     0,
-		SizeMemoryCache:           4977784,
+		SizeMemoryCache:           7937284,
 	}, metrics)
 }
 

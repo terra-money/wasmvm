@@ -145,8 +145,8 @@ checksum = "44c32f031ea41b4291d695026c023b95d59db2d8a2c7640800ed56bc8f510f22"
 
 [[package]]
 name = "cosmwasm-crypto"
-version = "0.16.2"
-source = "git+https://github.com/CosmWasm/cosmwasm?rev=2878868e6423d9b#2878868e6423d9b262987c1e8848756d41ae0551"
+version = "0.16.4"
+source = "git+https://github.com/terra-money/cosmwasm?rev=v0.16.4#9754f7e4ae4975b5d19ce2886b37011249dcca97"
 dependencies = [
  "digest",
  "ed25519-zebra",
@@ -157,16 +157,16 @@ dependencies = [
 
 [[package]]
 name = "cosmwasm-derive"
-version = "0.16.2"
-source = "git+https://github.com/CosmWasm/cosmwasm?rev=2878868e6423d9b#2878868e6423d9b262987c1e8848756d41ae0551"
+version = "0.16.4"
+source = "git+https://github.com/terra-money/cosmwasm?rev=v0.16.4#9754f7e4ae4975b5d19ce2886b37011249dcca97"
 dependencies = [
  "syn",
 ]
 
 [[package]]
 name = "cosmwasm-std"
-version = "0.16.2"
-source = "git+https://github.com/CosmWasm/cosmwasm?rev=2878868e6423d9b#2878868e6423d9b262987c1e8848756d41ae0551"
+version = "0.16.4"
+source = "git+https://github.com/terra-money/cosmwasm?rev=v0.16.4#9754f7e4ae4975b5d19ce2886b37011249dcca97"
 dependencies = [
  "base64",
  "cosmwasm-crypto",
@@ -180,8 +180,8 @@ dependencies = [
 
 [[package]]
 name = "cosmwasm-vm"
-version = "0.16.2"
-source = "git+https://github.com/CosmWasm/cosmwasm?rev=2878868e6423d9b#2878868e6423d9b262987c1e8848756d41ae0551"
+version = "0.16.4"
+source = "git+https://github.com/terra-money/cosmwasm?rev=v0.16.4#9754f7e4ae4975b5d19ce2886b37011249dcca97"
 dependencies = [
  "clru",
  "cosmwasm-crypto",
@@ -194,6 +194,7 @@ dependencies = [
  "serde_json",
  "sha2",
  "thiserror",
+ "threadpool",
  "wasmer",
  "wasmer-middlewares",
 ]
@@ -1304,6 +1305,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "threadpool"
+version = "1.8.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d050e60b33d41c19108b32cea32164033a9013fe3b46cbd4457559bfbf77afaa"
+dependencies = [
+ "num_cpus",
+]
+
+[[package]]
 name = "toml"
 version = "0.5.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1406,9 +1416,8 @@ checksum = "fd6fbd9a79829dd1ad0cc20627bf1ed606756a7f77edff7b66b7064f9cb327c6"
 
 [[package]]
 name = "wasmer"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7f52e455a01d0fac439cd7a96ba9b519bdc84e923a5b96034054697ebb17cd75"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "cfg-if",
  "indexmap",
@@ -1430,9 +1439,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-compiler"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc86dda6f715f03104800be575a38382b35c3962953af9e9d8722dcf0bd2458f"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "enumset",
  "loupe",
@@ -1449,9 +1457,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-compiler-cranelift"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1a570746cbec434179e2d53357973a34dfdb208043104e8fac3b7b0023015cf6"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "cranelift-codegen",
  "cranelift-entity",
@@ -1469,9 +1476,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-compiler-singlepass"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9429b9f7708c582d855b1787f09c7029ff23fb692550d4a1cc351c8ea84c3014"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "byteorder",
  "dynasm",
@@ -1488,9 +1494,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-derive"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1ee7b351bcc1e782997c72dc0b5b328f3ddcad4813b8ce3cac3f25ae5a4ab56b"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "proc-macro-error",
  "proc-macro2",
@@ -1500,9 +1505,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-engine"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8454ead320a4017ba36ddd9ab4fbf7776fceea6ab0b79b5e53664a1682569fc3"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "backtrace",
  "lazy_static",
@@ -1521,9 +1525,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-engine-dylib"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6aa390d123ebe23d5315c39f6063fcc18319661d03c8000f23d0fe1c011e8135"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "cfg-if",
  "leb128",
@@ -1543,9 +1546,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-engine-universal"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0dffe8015f08915eb4939ebc8e521cde8246f272f5197ea60d46214ac5aef285"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "cfg-if",
  "leb128",
@@ -1561,9 +1563,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-middlewares"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "95d2b4722d64c850893f7a7eab3ab76181efbafcd366827801d8bcd64bff525f"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "loupe",
  "wasmer",
@@ -1573,9 +1574,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-object"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c541c985799fc1444702501c15d41becfb066c92d9673defc1c7417fd8739e15"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "object",
  "thiserror",
@@ -1585,9 +1585,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-types"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c91f75d3c31f8b1f8d818ff49624fc974220243cbc07a2252f408192e97c6b51"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "indexmap",
  "loupe",
@@ -1598,9 +1597,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-vm"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "469a12346a4831e7dac639b9646d8c9b24c7d2cf0cf458b77f489edb35060c1f"
+version = "2.0.1"
+source = "git+https://github.com/terra-money/wasmer?rev=v2.0.1#681eb7070cad8f3938c56c101b27628fc9a81fad"
 dependencies = [
  "backtrace",
  "cc",

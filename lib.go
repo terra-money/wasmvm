@@ -42,8 +42,8 @@ type VM struct {
 // `printDebug` is a flag to enable/disable printing debug logs from the contract to STDOUT. This should be false in production environments.
 // `cacheSize` sets the size in MiB of an in-memory cache for e.g. module caching. Set to 0 to disable.
 // `deserCost` sets the gas cost of deserializing one byte of data.
-func NewVM(dataDir string, supportedFeatures string, memoryLimit uint32, printDebug bool, cacheSize uint32) (*VM, error) {
-	cache, err := api.InitCache(dataDir, supportedFeatures, cacheSize, memoryLimit)
+func NewVM(dataDir string, supportedFeatures string, memoryLimit uint32, printDebug bool, cacheSize uint32, refreshThreadNum uint32) (*VM, error) {
+	cache, err := api.InitCache(dataDir, supportedFeatures, cacheSize, memoryLimit, refreshThreadNum)
 	if err != nil {
 		return nil, err
 	}
