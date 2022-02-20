@@ -26,8 +26,8 @@ default = []
 backtraces = []
 
 [dependencies]
-cosmwasm-std = { git = "https://github.com/terra-money/cosmwasm", rev = "6cbf27c7da611a090eab32d3731fe98431d470c4", features = ["staking", "stargate"] }
-cosmwasm-vm = { git = "https://github.com/terra-money/cosmwasm", rev = "6cbf27c7da611a090eab32d3731fe98431d470c4", features = ["staking", "stargate"] }
+cosmwasm-std = { git = "https://github.com/terra-money/cosmwasm", rev = "16eae76a2573a7af2f9dcdd02ac0a37cf45ec35e", features = ["staking", "stargate"] }
+cosmwasm-vm = { git = "https://github.com/terra-money/cosmwasm", rev = "16eae76a2573a7af2f9dcdd02ac0a37cf45ec35e", features = ["staking", "stargate"] }
 errno = "0.2"
 serde_json = "1.0"
 thiserror = "1.0"
