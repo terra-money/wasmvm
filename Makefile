@@ -55,10 +55,10 @@ release-build-alpine:
 	# build the muslc *.a file
 	docker run --rm -u $(USER_ID):$(USER_GROUP) -v $(shell pwd)/libwasmvm:/code $(BUILDERS_PREFIX)-alpine
 	cp libwasmvm/target/release/examples/libmuslc.a api/libwasmvm_muslc.a
-	make update-bindings
+	# make update-bindings
 	# try running go tests using this lib with muslc
-	docker run --rm -u $(USER_ID):$(USER_GROUP) -v $(shell pwd):/testing -w /testing $(BUILDERS_PREFIX)-alpine go build -tags muslc .
-	docker run --rm -u $(USER_ID):$(USER_GROUP) -v $(shell pwd):/testing -w /testing $(BUILDERS_PREFIX)-alpine go test -tags muslc ./api ./types
+	# docker run --rm -u $(USER_ID):$(USER_GROUP) -v $(shell pwd):/testing -w /testing $(BUILDERS_PREFIX)-alpine go build -tags muslc .
+	# docker run --rm -u $(USER_ID):$(USER_GROUP) -v $(shell pwd):/testing -w /testing $(BUILDERS_PREFIX)-alpine go test -tags muslc ./api ./types
 
 # Creates a release build in a containerized build environment of the shared library for glibc Linux (.so)
 release-build-linux:

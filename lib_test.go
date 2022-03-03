@@ -1,13 +1,14 @@
 package cosmwasm
 
 import (
+	"io/ioutil"
+	"os"
+	"testing"
+
 	"github.com/CosmWasm/wasmvm/api"
 	"github.com/CosmWasm/wasmvm/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"io/ioutil"
-	"os"
-	"testing"
 )
 
 const TESTING_FEATURES = "staking,stargate"
@@ -15,13 +16,14 @@ const TESTING_PRINT_DEBUG = false
 const TESTING_GAS_LIMIT = 100_000_000
 const TESTING_MEMORY_LIMIT = 32 // MiB
 const TESTING_CACHE_SIZE = 100  // MiB
+const TESTING_REFRESH_THREAD_NUM = 4
 
 const HACKATOM_TEST_CONTRACT = "./api/testdata/hackatom.wasm"
 
 func withVM(t *testing.T) *VM {
 	tmpdir, err := ioutil.TempDir("", "wasmvm-testing")
 	require.NoError(t, err)
-	vm, err := NewVM(tmpdir, TESTING_FEATURES, TESTING_MEMORY_LIMIT, TESTING_PRINT_DEBUG, TESTING_CACHE_SIZE)
+	vm, err := NewVM(tmpdir, TESTING_FEATURES, TESTING_MEMORY_LIMIT, TESTING_PRINT_DEBUG, TESTING_CACHE_SIZE, TESTING_REFRESH_THREAD_NUM)
 	require.NoError(t, err)
 
 	t.Cleanup(func() {
@@ -133,7 +135,7 @@ func TestGetMetrics(t *testing.T) {
 	assert.Equal(t, &types.Metrics{
 		HitsFsCache:         1,
 		ElementsMemoryCache: 1,
-		SizeMemoryCache:     4977784,
+		SizeMemoryCache:     7937284,
 	}, metrics)
 
 	// Instantiate 2
@@ -149,7 +151,7 @@ func TestGetMetrics(t *testing.T) {
 		HitsMemoryCache:     1,
 		HitsFsCache:         1,
 		ElementsMemoryCache: 1,
-		SizeMemoryCache:     4977784,
+		SizeMemoryCache:     7937284,
 	}, metrics)
 
 	// Pin
@@ -164,8 +166,8 @@ func TestGetMetrics(t *testing.T) {
 		HitsFsCache:               1,
 		ElementsPinnedMemoryCache: 1,
 		ElementsMemoryCache:       1,
-		SizePinnedMemoryCache:     4977784,
-		SizeMemoryCache:           4977784,
+		SizePinnedMemoryCache:     7959108,
+		SizeMemoryCache:           7937284,
 	}, metrics)
 
 	// Instantiate 3
@@ -183,8 +185,8 @@ func TestGetMetrics(t *testing.T) {
 		HitsFsCache:               1,
 		ElementsPinnedMemoryCache: 1,
 		ElementsMemoryCache:       1,
-		SizePinnedMemoryCache:     4977784,
-		SizeMemoryCache:           4977784,
+		SizePinnedMemoryCache:     7959108,
+		SizeMemoryCache:           7937284,
 	}, metrics)
 
 	// Unpin
@@ -201,7 +203,7 @@ func TestGetMetrics(t *testing.T) {
 		ElementsPinnedMemoryCache: 0,
 		ElementsMemoryCache:       1,
 		SizePinnedMemoryCache:     0,
-		SizeMemoryCache:           4977784,
+		SizeMemoryCache:           7937284,
 	}, metrics)
 
 	// Instantiate 4
@@ -220,6 +222,6 @@ func TestGetMetrics(t *testing.T) {
 		ElementsPinnedMemoryCache: 0,
 		ElementsMemoryCache:       1,
 		SizePinnedMemoryCache:     0,
-		SizeMemoryCache:           4977784,
+		SizeMemoryCache:           7937284,
 	}, metrics)
 }

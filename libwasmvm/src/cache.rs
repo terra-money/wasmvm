@@ -30,6 +30,7 @@ pub extern "C" fn init_cache(
     supported_features: ByteSliceView,
     cache_size: u32,            // in MiB
     instance_memory_limit: u32, // in MiB
+    refresh_thread_num: u32,
     error_msg: Option<&mut UnmanagedVector>,
 ) -> *mut cache_t {
     let r = catch_unwind(|| {
@@ -38,6 +39,7 @@ pub extern "C" fn init_cache(
             supported_features,
             cache_size,
             instance_memory_limit,
+            refresh_thread_num,
         )
     })
     .unwrap_or_else(|_| Err(Error::panic()));
@@ -58,6 +60,7 @@ fn do_init_cache(
     supported_features: ByteSliceView,
     cache_size: u32,            // in MiB
     instance_memory_limit: u32, // in MiB
+    refresh_thread_num: u32,
 ) -> Result<*mut Cache<GoApi, GoStorage, GoQuerier>, Error> {
     let dir = data_dir
         .read()
@@ -79,11 +82,13 @@ fn do_init_cache(
             .try_into()
             .expect("Cannot convert u32 to usize. What kind of system is this?"),
     );
+    let refresh_thread_num = refresh_thread_num as usize;
     let options = CacheOptions {
         base_dir: dir_str.into(),
         supported_features: features,
         memory_cache_size,
         instance_memory_limit,
+        refresh_thread_num,
     };
     let cache = unsafe { Cache::new(options) }?;
     let out = Box::new(cache);
