@@ -14,6 +14,20 @@ can do the cross-compilation.
 
 ## Changelog
 
+**Version 0011:**
+
+- Update Rust to 1.59.0.
+
+**Version 0010:**
+
+- Add cross-compilation setup to build `libwasmvm_muslc.a` and `libwasmvm_muslc.aarch64.a`
+  from the alpine builder image.
+
+**Version 0009:**
+
+- Let macOS build dylib files with both aarch64 and x86_64 code.
+- Update Go (for testing only) to 1.17.7.
+
 **Version 0008:**
 
 - Update Rust to 1.55.0 and Go (for testing only) to 1.17.5.

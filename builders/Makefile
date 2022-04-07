@@ -1,18 +1,18 @@
 # Versioned by a simple counter that is not bound to a specific CosmWasm version
 # See builders/README.md
-BUILDERS_PREFIX := cosmwasm/go-ext-builder:0008
+BUILDERS_PREFIX := cosmwasm/go-ext-builder:0011
 
 .PHONY: docker-image-centos7
 docker-image-centos7:
-	docker build . -t $(BUILDERS_PREFIX)-centos7 -f ./Dockerfile.centos7
+	docker build --pull . -t $(BUILDERS_PREFIX)-centos7 -f ./Dockerfile.centos7
 
 .PHONY: docker-image-cross
 docker-image-cross:
-	docker build . -t $(BUILDERS_PREFIX)-cross -f ./Dockerfile.cross
+	docker build --pull . -t $(BUILDERS_PREFIX)-cross -f ./Dockerfile.cross
 
 .PHONY: docker-image-alpine
 docker-image-alpine:
-	docker build . -t $(BUILDERS_PREFIX)-alpine -f ./Dockerfile.alpine
+	docker build --pull . -t $(BUILDERS_PREFIX)-alpine -f ./Dockerfile.alpine
 
 .PHONY: docker-images
 docker-images: docker-image-centos7 docker-image-cross docker-image-alpine
